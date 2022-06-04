@@ -160,19 +160,16 @@ def who_goes_first
   prompt "1. You, 2. Your opponent, 3. Let your opponent decide!"
 
   loop do
-  choices = { 
-    1 => 'player',
-    2 => 'computer',
-    3 => ['player', 'computer'].sample
-  }
+    choices = { 1 => 'player', 2 => 'computer',
+                3 => ['player', 'computer'].sample }
 
-  first = gets.chomp.to_i
+    first = gets.chomp.to_i
     if choices.keys.any?(first)
-    prompt "#{choices[first].capitalize} will go first!"
-    sleep (0.5)
-    return choices[first]
+      prompt "#{choices[first].capitalize} will go first!"
+      sleep(0.5)
+      return choices[first]
     else
-    prompt "Please enter a valid number!"
+      prompt "Please enter a valid number!"
     end
   end
 end
@@ -208,7 +205,7 @@ end
 current_player = who_goes_first
 loop do
   board = initialize_board
-  
+
   loop do
     display_board(board)
     display_score(player_score, computer_score)

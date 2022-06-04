@@ -32,13 +32,13 @@ def total(cards)
   total = 0
 
   values.each do |value|
-    if value == "Ace"
-      total += 11
-    elsif value.to_i == 0
-      total += 10
-    else
-      total += value.to_i
-    end
+    total += if value == "Ace"
+               11
+             elsif value.to_i == 0
+               10
+             else
+               value.to_i
+             end
   end
 
   values.select { |value| value == "Ace" }.count.times do
@@ -49,45 +49,37 @@ def total(cards)
 end
 
 def busted?(hand)
-  if total(hand) > 21
-    true
-  else
-    false
-  end
+  total(hand) > 21
 end
 
-def player_turn(deck, hand)
+def player_turn(deck, hand, dealer)
   answer = nil
   loop do
-    prompt "hit or stay?"
+    prompt "hit or stay?('s' to stay)"
     answer = gets.chomp
     break if answer.downcase.start_with?('s')
     hand << deck.pop
-    prompt "Your hand: #{hand}"
+    display_hands(hand, dealer)
     break if busted?(hand)
   end
 
   if busted?(hand)
-    system 'clear'
-    prompt "Bust: #{hand}"
     prompt "You Busted, Dealer Wins!" # end game
   else
     prompt "You chose to stay!"
   end
 end
 
-def dealer_turn(deck, hand)
+def dealer_turn(deck, hand, player)
   loop do
     break if total(hand) >= 17 || busted?(hand)
     prompt "Dealer draws a card"
     hand << deck.pop
-    prompt "Dealer's hand: #{hand}"
+    display_hands(player, hand)
     sleep(1.2)
   end
 
   if busted?(hand)
-    system 'clear'
-    prompt "Bust: #{hand}"
     prompt "Dealer Busted, You Win!" # end game
   else
     prompt "Dealer chose to stay!"
@@ -96,14 +88,13 @@ def dealer_turn(deck, hand)
 end
 
 def winner?(player, dealer)
-  result = ''
-  if total(player) > total(dealer)
-    result = 'Player'
-  elsif total(player) < total(dealer)
-    result = 'Dealer'
-  else
-    result = 'Tie'
-  end
+  result = if total(player) > total(dealer)
+             'Player'
+           elsif total(player) < total(dealer)
+             'Dealer'
+           else
+             'Tie'
+           end
   result
 end
 
@@ -125,7 +116,7 @@ def play_again?
     if input.start_with?('y')
       system "clear"
       prompt("Time for another round!")
-      sleep(1)
+      sleep(1.3)
       return
     elsif input.start_with?('n')
       prompt("Thank you for playing!")
@@ -137,6 +128,8 @@ def play_again?
 end
 
 loop do
+  prompt "Welcome to Twenty-One!"
+  sleep(1.3)
   loop do
     deck = initialize_deck.shuffle
 
@@ -145,9 +138,9 @@ loop do
 
     display_hands(player_hand, dealer_hand)
 
-    player_turn(deck, player_hand)
+    player_turn(deck, player_hand, dealer_hand)
     break if busted?(player_hand)
-    dealer_turn(deck, dealer_hand)
+    dealer_turn(deck, dealer_hand, player_hand)
     break if busted?(dealer_hand)
 
     display_hands(player_hand, dealer_hand)
