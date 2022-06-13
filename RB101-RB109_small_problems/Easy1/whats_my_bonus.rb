@@ -4,7 +4,7 @@ If the boolean is true, the bonus should be half of the salary. If the boolean i
 
 Problem
 Write a method that calculates the bonus for a salary and takes two arguments, a positive integer and a boolean. 
-If the boolean is true, bonus if half the salary, if false the bonus is 0
+If the boolean is true, bonus is half the salary, if false the bonus is 0
 
 Examples/Test Cases
 puts calculate_bonus(2800, true) == 1400
