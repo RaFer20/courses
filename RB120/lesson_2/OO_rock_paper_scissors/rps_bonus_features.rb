@@ -1,5 +1,5 @@
 module Displayable
-  WIN_CON = 5
+  WIN_CON = 3
 
   WELCOME_MESSAGE = <<~MSG
   Welcome to Rock, Paper, Scissors, Lizard, Spock!
@@ -75,10 +75,13 @@ module Displayable
   end
 
   def display_grand_champion
+    system 'clear'
     if human.score == WIN_CON
-      puts "#{human.name} has reached #{WIN_CON} points! #{human.name} is the grand champion!"
+      puts "#{human.name} has reached #{WIN_CON} points!"
+      puts "#{human.name} is the grand champion!"
     elsif computer.score == WIN_CON
-      puts "#{computer.name} has reached #{WIN_CON} points! #{computer.name} is the grand champion!"
+      puts "#{computer.name} has reached #{WIN_CON} points!"
+      puts "#{computer.name} is the grand champion!"
     end
   end
 end
@@ -286,8 +289,6 @@ class RPSGame
       display_continue
     end
     display_grand_champion if winner?
-    human.reset_score
-    computer.reset_score
     round_loop if play_again?
   end
   # rubocop:enable Metrics/MethodLength
@@ -300,7 +301,7 @@ class RPSGame
     computer.move > human.move
   end
 
-  def play_again?
+  def play_again_loop
     answer = nil
     loop do
       puts "Would you like to play again? (y/n)"
@@ -308,10 +309,15 @@ class RPSGame
       break if ['y', 'n'].include?(answer.downcase)
       puts "Sorry must be 'y' or 'n'"
     end
+    answer
+  end
 
-    return false if answer.downcase == "n"
+  def play_again?
+    return false if play_again_loop == "n"
     system "clear"
-    return true if answer.downcase == "y"
+    human.reset_score
+    computer.reset_score
+    return true if play_again_loop == "y"
   end
 
   def winner?
