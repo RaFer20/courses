@@ -135,6 +135,8 @@ class Board
                   [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # cols
                   [[1, 5, 9], [3, 5, 7]]              # diagonals
 
+  attr_accessor :squares
+
   def initialize
     @squares = {}
     reset_board
@@ -164,42 +166,6 @@ class Board
       end
     end
     nil
-  end
-
-  def strategic_line(line, mark)
-    return nil unless @squares.values_at(*line).map(&:marker).count(mark) == 2
-    @squares.keys.select { |k| line.include?(k) && @squares[k].unmarked? }.first
-  end
-
-  def offensive_thinking(marker, square = nil)
-    WINNING_LINES.each do |line|
-      square = strategic_line(line, marker)
-
-      if square
-        @squares[square].marker = marker
-        break
-      end
-    end
-
-    square
-  end
-
-  def defensive_thinking(h_marker, c_marker, square = nil)
-    WINNING_LINES.each do |line|
-      square = strategic_line(line, h_marker)
-
-      if square
-        @squares[square].marker = c_marker
-        break
-      end
-    end
-
-    square
-  end
-
-  def prioritize_middle(c_marker)
-    return nil unless unmarked_keys.include?(5)
-    @squares[5].marker = c_marker
   end
 
   def reset_board
@@ -411,15 +377,55 @@ class TTTGame
     board[square] = human.marker
   end
 
+  def strategic_line(line, mark)
+    return nil unless # checks if there's 2 of any marker in a line
+    board.squares.values_at(*line).map(&:marker).count(mark) == 2
+
+    board.squares.keys.select do |k|
+      line.include?(k) && board.squares[k].unmarked?
+    end.first
+  end
+
+  def offensive_thinking(c_marker, square = nil)
+    Board::WINNING_LINES.each do |line|
+      square = strategic_line(line, c_marker)
+
+      if square
+        board.squares[square].marker = c_marker
+        break
+      end
+    end
+
+    square
+  end
+
+  def defensive_thinking(h_marker, c_marker, square = nil)
+    Board::WINNING_LINES.each do |line|
+      square = strategic_line(line, h_marker)
+
+      if square
+        board.squares[square].marker = c_marker
+        break
+      end
+    end
+
+    square
+  end
+
+  def prioritize_middle(c_marker)
+    return nil unless board.unmarked_keys.include?(5)
+    board.squares[5].marker = c_marker
+  end
+
   def computer_moves(square = nil)
     loop do
-      square = board.offensive_thinking(computer.marker)
+      square = offensive_thinking(computer.marker)
       break if square
 
-      square = board.defensive_thinking(human.marker, computer.marker)
+      square = defensive_thinking(human.marker, computer.marker)
       break if square
 
-      square = board.prioritize_middle(computer.marker)
+      square = prioritize_middle(computer.marker)
       break if square
 
       board[board.unmarked_keys.sample] = computer.marker
@@ -431,7 +437,9 @@ class TTTGame
     if human_turn?
       human_moves
       @current_marker = computer.marker
+      clear_screen_and_display_board
     else
+      sleep 0.5
       computer_moves
       @current_marker = human.marker
     end
