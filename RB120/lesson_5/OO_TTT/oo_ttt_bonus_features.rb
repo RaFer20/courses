@@ -1,21 +1,9 @@
 module Displayable
-  FIRST_TO_MOVE = ["X", "O"].sample # selected at random
-  WIN_CON = 3 # Score required to be grand champion
-  WELCOME = <<~WELCOME
-  Welcome to Tic Tac Toe!
-
-  The first player to reach #{WIN_CON} points is the grand champion!
-
-
-  #{FIRST_TO_MOVE} moves first this match!
-
-  WELCOME
-
   def display_welcome_message
-    puts WELCOME
+    puts TTTGame::WELCOME
     puts ""
     display_opponent
-    puts "Press 'Enter' to continue."
+    puts "<Press 'Enter' to continue.>"
     gets
     clear
   end
@@ -51,6 +39,17 @@ module Displayable
     h_marker = "#{human.name} is an #{human.marker}.     "
     c_marker = "#{computer.name} is an #{computer.marker}."
     puts Banner.new(h_marker + c_marker)
+  end
+
+  def display_starting_player
+    puts Banner.new("#{starting_marker} is the starting marker")
+  end
+
+  def display_board
+    display_scoreboard
+    display_markers
+    board.draw
+    display_starting_player
   end
 
   def display_play_again_message
@@ -225,9 +224,12 @@ class Player
   include Displayable
 
   MARKER_CHOICE = <<~MARKER
-                Which marker would you prefer to play as?(1-2 or X-O)
-                1. X
-                2. O
+                Which marker would you prefer to play as?
+
+                  1. X
+                  2. O
+
+                <Enter '1' or '2' to continue.>
                 MARKER
 
   attr_reader :marker
@@ -252,6 +254,7 @@ class Human < Player
   private
 
   def set_name
+    clear
     n = ""
     loop do
       puts "What's your name?"
@@ -267,9 +270,10 @@ class Human < Player
     answer = nil
     loop do
       puts MARKER_CHOICE
-      answer = gets.chomp.to_s.downcase
-      break if ["1", "2", "x", "o"].include?(answer)
-      "Sorry that's not a valid choice, you may type in 1-2 or X-O"
+      answer = gets.chomp
+      break if %w(1 2).include?(answer)
+      clear
+      puts "Please enter a valid choice"
     end
     ["1", "x"].include?(answer) ? "X" : "O"
   end
@@ -300,13 +304,39 @@ end
 class TTTGame
   include Displayable
 
-  attr_reader :board, :human, :computer
+  FIRST_TO_MOVE = ["X", "O"].sample # selected at random if player won't choose
+  WIN_CON = 2 # Score required to be grand champion
+  WELCOME = <<~WELCOME
+  Welcome to Tic Tac Toe!
+
+  The first player to reach #{WIN_CON} points is the grand champion!
+
+  WELCOME
+  START_DECISION = <<~CHOICE
+  Would you like to decide who starts?
+
+    1. "I want to decide!"
+    2. "My opponent can decide who starts."
+
+  <Enter '1' or '2' to continue>
+  CHOICE
+  WHO_STARTS = <<~STARTER
+  Would you like to start or do you want your opponent to start?
+
+    1. "I want to start!"
+    2. "I'd like my opponent to start."
+
+  <Enter '1' or '2' to continue.>
+  STARTER
+
+  attr_reader :board, :human, :computer, :starting_marker
 
   def initialize
     @board = Board.new
     @human = Human.new
     @computer = Computer.new(human.marker)
-    @current_marker = FIRST_TO_MOVE
+    @starting_marker = choose_starter? ? starter_choice : FIRST_TO_MOVE
+    @current_marker = @starting_marker
   end
 
   def play
@@ -330,6 +360,30 @@ class TTTGame
       reset_board
       display_play_again_message
     end
+  end
+
+  def choose_starter?
+    clear
+    answer = nil
+    loop do
+      puts START_DECISION
+      answer = gets.chomp
+      break if %w(1 2).include?(answer)
+      puts "Must enter 'y' or 'n'"
+    end
+    answer == '1'
+  end
+
+  def starter_choice
+    clear
+    answer = nil
+    loop do
+      puts WHO_STARTS
+      answer = gets.chomp
+      break if %w(1 2).include?(answer)
+      puts "Please enter '1' or '2'"
+    end
+    answer == '1' ? human.marker : computer.marker
   end
 
   def update_score
@@ -357,12 +411,6 @@ class TTTGame
 
   def human_turn?
     @current_marker == human.marker
-  end
-
-  def display_board
-    display_scoreboard
-    display_markers
-    board.draw
   end
 
   def human_moves
@@ -417,6 +465,10 @@ class TTTGame
     board.squares[5].marker = c_marker
   end
 
+  def mark_random_square
+    board[board.unmarked_keys.sample] = computer.marker
+  end
+
   def computer_moves(square = nil)
     loop do
       square = offensive_thinking(computer.marker)
@@ -428,7 +480,7 @@ class TTTGame
       square = prioritize_middle(computer.marker)
       break if square
 
-      board[board.unmarked_keys.sample] = computer.marker
+      mark_random_square
       break
     end
   end
@@ -459,7 +511,7 @@ class TTTGame
 
   def reset_board
     board.reset_board
-    @current_marker = FIRST_TO_MOVE
+    @current_marker = @starting_marker
     clear
   end
 end
