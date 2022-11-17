@@ -43,7 +43,7 @@ module Displayable
   end
 
   def display_hit(participant)
-  prompt "#{participant.name} hits!"
+    prompt "#{participant.name} hits!"
   end
 
   def display_stay(participant)
@@ -324,10 +324,8 @@ class TwentyOne
   def dealer_turn
     update_card_display
     prompt "#{dealer.name}'s turn..."
-    puts ""
     dealer_hit_loop if dealer.total < MAX_HIT
     display_stay(dealer) if !dealer.busted?
-    puts ""
     display_bust(dealer, player) if dealer.busted?
   end
 
