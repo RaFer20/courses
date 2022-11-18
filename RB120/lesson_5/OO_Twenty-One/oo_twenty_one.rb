@@ -58,6 +58,7 @@ module Displayable
 
   def display_bust(participant, opponent)
     puts Banner.new("#{participant.name} busted! #{opponent.name} wins!")
+    sleep 1
   end
 
   def prompt(msg)
@@ -377,7 +378,6 @@ class TwentyOne
   def gameplay
     player_turn
     dealer_turn if !player.busted?
-    sleep 1.5
   end
 
   def no_busts
@@ -402,7 +402,6 @@ class TwentyOne
   def play_again?
     input = nil
     loop do
-      puts ""
       prompt "Would you like to play again?"
       prompt "1. Play again"
       prompt "2. Exit game"
