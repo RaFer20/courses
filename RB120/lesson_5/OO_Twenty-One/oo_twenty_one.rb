@@ -37,6 +37,11 @@ module Displayable
     puts ""
   end
 
+  def initial_card_display
+    clear
+    initial_show_cards
+  end
+
   def update_card_display
     clear
     show_cards
@@ -48,6 +53,7 @@ module Displayable
 
   def display_stay(participant)
     prompt "#{participant.name} stays!"
+    sleep 1
   end
 
   def display_bust(participant, opponent)
@@ -72,12 +78,12 @@ class Banner
     @height = height # must be an odd number to be centered vertically
   end
 
+  private
+
   def to_s
     return error_message if width < (@message.length + 4)
     create_banner
   end
-
-  private
 
   def create_banner
     banner_array = []
@@ -141,6 +147,16 @@ class Card
     puts display_card
   end
 
+  def [](idx) # used in show_hand
+    display_card[idx]
+  end
+
+  def hide(idx)
+    hidden_card[idx]
+  end
+
+  private
+
   # rubocop:disable Layout/ArrayAlignment
   def display_card # 9 height x 8 width area
     ["  _________  ",
@@ -153,11 +169,19 @@ class Card
     " |#{rank.rjust(2)}       | ",
     " |_________| "]
   end
-  # rubocop:enable Layout/ArrayAlignment
 
-  def [](idx) # used in show_hand
-    display_card[idx]
+  def hidden_card
+    ["  _________  ",
+    " |        ?| ",
+    " |         | ",
+    " |         | ",
+    " |    ?    | ",
+    " |         | ",
+    " |         | ",
+    " |?        | ",
+    " |_________| "]
   end
+  # rubocop:enable Layout/ArrayAlignment
 end
 
 class Participant
@@ -182,6 +206,19 @@ class Participant
     puts ''
   end
 
+  def busted?
+    total > TwentyOne::GOAL
+  end
+
+  def total
+    values = card_values
+    total = values.sum
+    total -= 10 if total > TwentyOne::GOAL && values.include?(11)
+    total
+  end
+
+  private
+
   def card_values
     cards.map do |card|
       if card.rank == 'Ace'
@@ -192,17 +229,6 @@ class Participant
         card.rank.to_i
       end
     end
-  end
-
-  def total
-    values = card_values
-    total = values.sum
-    total -= 10 if total > TwentyOne::GOAL && values.include?(11)
-    total
-  end
-
-  def busted?
-    total > TwentyOne::GOAL
   end
 end
 
@@ -224,6 +250,17 @@ class Dealer < Participant
   def set_name
     self.name = ['21Bot', 'SirAcealot', 'AceBot',
                  'Macro', 'Micro', 'Screwie'].sample
+  end
+
+  def show_hand_start
+    puts Banner.new("#{name}'s hand")
+    0.upto(8) do |slice|
+      0.upto(cards.size - 1) do |card|
+        print cards[card][slice] if card == 0
+        print cards[card].hide(slice) if card != 0
+      end
+      puts ''
+    end
   end
 end
 
@@ -258,12 +295,18 @@ class TwentyOne
   def deal_cards
     2.times do
       player.cards << deck.deal_card
-      update_card_display
+      initial_card_display
       sleep 0.3
       dealer.cards << deck.deal_card
-      update_card_display
+      initial_card_display
       sleep 0.3
     end
+  end
+
+  def initial_show_cards
+    player.show_hand
+    dealer.show_hand_start
+    puts ""
   end
 
   def show_cards
@@ -275,10 +318,12 @@ class TwentyOne
   def player_choice
     input = nil
     loop do
-      prompt "Do you want to (h)it or (s)tay?"
-      input = gets.chomp.downcase
-      break if %w(h s).include?(input)
-      prompt "please enter 'h' to hit or 's' to stay."
+      prompt "Do you want to hit or stay?"
+      prompt "1. Hit"
+      prompt "2. Stay"
+      input = gets.chomp.to_s
+      break if %w(1 2).include?(input)
+      prompt "Please enter '1' to hit or '2' to stay."
     end
     input
   end
@@ -289,9 +334,9 @@ class TwentyOne
 
   def player_hit_loop
     loop do
-      break if player_choice == 's'
+      break if player_choice == "2"
       draw_card(player)
-      update_card_display
+      initial_card_display
       prompt "#{player.name}'s turn..."
       puts ""
       display_hit(player)
@@ -358,12 +403,14 @@ class TwentyOne
     input = nil
     loop do
       puts ""
-      prompt "Would you like to play again?(y/n)"
-      input = gets.chomp.downcase
-      break if %w(y n).include?(input)
-      prompt "Sorry, must enter 'y' or 'n'"
+      prompt "Would you like to play again?"
+      prompt "1. Play again"
+      prompt "2. Exit game"
+      input = gets.chomp.to_s
+      break if %w(1 2).include?(input)
+      prompt "Sorry, must enter '1' or '2'"
     end
-    input == 'y'
+    input == '1'
   end
 
   def reset
