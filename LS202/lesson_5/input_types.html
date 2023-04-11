@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<!-- Type text -->
+<!-- we can use the maxlength attribute to specify the input's maximum length. -->
+<form action="#" method="post">
+  <fieldset>
+    <label>
+      First Name
+      <input type="text" name="first_name" value="Tom">
+    </label>
+  </fieldset>
+</form>
+
+
+<!-- Type password -->
+<!-- use maxlength attribute to specify the input's maximum length. -->
+<form action="#" method="post">
+  <fieldset>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password"
+           value="Not-good-password" size="35">
+  </fieldset>
+</form>
+<!-- The value attribute in this example is illustrative.
+In most cases, you should not set a value for the password input type. -->
+
+
+<!-- Type email -->
+<form action="#" method="post">
+  <fieldset>
+    <label>
+      Email
+      <input type="email" name="email" placeholder="username@domain">
+    </label>
+  </fieldset>
+</form>
+
+<!-- Type tel -->
+<form action="#" method="post">
+  <fieldset>
+    <label>
+      Phone
+      <input type="tel" name="phone" placeholder="(###) ###-####">
+    </label>
+  </fieldset>
+</form>
+
+<!-- Type checkbox -->
+<form action="#" method="post">
+  <fieldset>
+    <label>
+      <input type="checkbox" name="choice" value="search">
+      Sort search results
+    </label>
+
+    <label>
+      <input type="checkbox" name="choice" value="google" checked>
+      Search on Google
+    </label>
+
+    <label>
+      <input type="checkbox" name="choice" value="recent" checked>
+      Recent results (within last year)
+    </label>
+  </fieldset>
+</form>
+<!-- You can select checked elements in CSS with the :checked pseudo-class,
+which lets you change the appearance of checked radio buttons and checkboxes.
+Note that this pseudo-class doesn't look for the actual checked attribute;
+instead, it selects based on the current state of the checkbox. -->
+
+<!-- We can also use the name attribute without a value attribute like this: -->
+<form action="#" method="post">
+  <fieldset>
+    <label>
+      <input type="checkbox" name="search">
+      Sort search results
+    </label>
+
+    <label>
+      <input type="checkbox" name="google" checked>
+      Search on Google
+    </label>
+
+    <label>
+      <input type="checkbox" name="recent" checked>
+      Recent results (within last year)
+    </label>
+  </fieldset>
+</form>
+<!-- the browser will send google=on and recent=on to the server.  -->
+
+
+<!-- Type radio -->
+<!-- Use the checked attribute to mark the default radio button.
+  If there is no default button, use the required attribute on
+  all of the buttons in a group to enforce selecting a button. -->
+<form action="#" method="post">
+  <fieldset>
+    <label>
+      <input type="radio" name="color" value="red">
+      Red
+    </label>
+
+    <label>
+      <input type="radio" name="color" value="green" checked>
+      Green
+    </label>
+
+    <label>
+      <input type="radio" name="color" value="blue">
+      Blue
+    </label>
+  </fieldset>
+</form>
+
+
+<!-- Type submit -->
+<form action="#" method="post">
+  <fieldset>
+    <input type="submit" value="Save">
+  </fieldset>
+</form>
+
+<!-- Type reset -->
+<form action="#" method="post">
+  <fieldset>
+    <input type="reset" value="Clear Form">
+  </fieldset>
+</form>

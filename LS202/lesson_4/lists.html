@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<h1>Types of Lists</h1>
+<!-- Unordered List -->
+<h2>Unordered List</h2>
+<ul>
+  <li>Red</li>
+  <li>Orange</li>
+  <li>Yellow</li>
+  <li>Green</li>
+  <li>Blue</li>
+  <li>Indigo</li>
+  <li>Violet</li>
+</ul>
+<!-- Unordered List -->
+
+<!-- Ordered List -->
+<h2>Ordered List</h2>
+<ol>
+  <li>Red</li>
+  <li>Orange</li>
+  <li>Yellow</li>
+  <li>Green</li>
+  <li>Blue</li>
+  <li>Indigo</li>
+  <li>Violet</li>
+</ol>
+<!-- Ordered List -->
+
+<!-- Description List -->
+<h2>Description List</h2>
+<dl>
+  <dt>Unordered</dt>
+  <dd>A simple list with bullets.</dd>
+  <dd>A plain list with no bullets or sequence numbers.</dd>
+
+  <dt>Ordered</dt>
+  <dd>A simple list with sequence numbers or letters.</dd>
+
+  <dt>Description</dt>
+  <dt>Definition</dt>
+  <dd>A list with terms and definitions.</dd>
+</dl>
+<!-- Description List -->
+
+
+<!-- Nested List A -->
+<h2>Nested List A</h2>
+<dl>
+  <dt>Unordered</dt>
+  <dd>A simple list with bullets.</dd>
+  <dd>A plain list with no bullets or sequence numbers.</dd>
+  <dd>
+    <ul>
+      <li>Red</li>
+      <li>Green</li>
+      <li>Blue</li>
+    </ul>
+  </dd>
+
+  <dt>Ordered</dt>
+  <dd>A simple list with a visible sequence.</dd>
+  <dd>
+    <ol>
+      <li>Red</li>
+      <li>Green</li>
+      <li>Blue</li>
+    </ol>
+  </dd>
+
+  <dt>Description</dt>
+  <dt>Definition</dt>
+  <dd>A list with terms and definitions.</dd>
+  <dd>
+    <dl>
+      <dt>Red</dt>   <dd><div class="red"></div></dd>
+      <dt>Green</dt> <dd><div class="green"></div></dd>
+      <dt>Blue</dt>  <dd><div class="blue"></div></dd>
+    </dl>
+  </dd>
+</dl>
+<!-- Nested List A -->
+
+<!-- Nested List B -->
+<h2>Nested List B</h2>
+<ul>
+  <li class="redB">
+    Red
+    <ul>
+      <li>&#9608;&#9608;&#9608;</li>
+      <li>#ff0000</li>
+      <li>rgb(255, 0, 0)</li>
+    </ul>
+  </li>
+
+  <li class="greenB">
+    Green
+    <ul>
+      <li>&#9608;&#9608;&#9608;</li>
+      <li>#00ff00</li>
+      <li>rgb(0, 255, 0)</li>
+    </ul>
+  </li>
+
+  <li class="blueB">
+    Blue
+    <ul>
+      <li>&#9608;&#9608;&#9608;</li>
+      <li>#0000ff</li>
+      <li>rgb(0, 0, 255)</li>
+    </ul>
+  </li>
+</ul>
+<!-- Nested List B -->
+<!-- &#9608; generates a solid rectangle character, █, the Unicode character for a full block.
+     Most developers will never have a need for this character. -->
+
+<!-- Navigation Menu -->
+<h2>Navigation Menu A (Vertical)</h2>
+<nav>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Projects</a></li>
+    <li><a href="#">Team</a></li>
+    <li><a href="#">Help</a></li>
+  </ul>
+</nav>
+
+<!-- Navigation Menu -->
+<h2>Navigation Menu B (Horizontal)</h2>
+<nav>
+  <ul class="navB">
+    <li class="navB"><a href="#">Home</a></li>
+    <li class="navB"><a href="#">Projects</a></li>
+    <li class="navB"><a href="#">Team</a></li>
+    <li class="navB"><a href="#">Help</a></li>
+  </ul>
+</nav>
+
+<style>
+/* Nested List A */
+li, dd, dt {
+  font-size: 1.25rem;
+}
+
+.red, .green, .blue {
+  width: 50px;
+  height: 25px;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+.blue {
+  background-color: blue;
+}
+/* Nested List B */
+.redB {
+  color: red;
+}
+
+.greenB {
+  color: green;
+}
+
+.blueB {
+  color: blue;
+}
+
+/* Navigation Menu A */
+nav ul {
+ background-color: powderblue;
+ list-style-type: none;
+ padding-left: 0;
+ width: 200px;
+}
+
+nav li {
+ font-size: 1.25rem;
+}
+
+nav a {
+ box-sizing: border-box;
+ color: blue;
+ display: inline-block;
+ line-height: 2.5;
+ padding: 0 10px;
+ text-decoration: none;
+ width: 100%;
+}
+
+nav a:hover,
+nav a:focus {
+ background-color: blue;
+ color: white;
+}
+/* Navigation Menu B */
+nav ul.navB {
+  font-size: 0;
+  width: 100%;
+}
+
+nav  li.navB {
+  display: inline-block;
+  font-size: 1.25rem;
+  text-align: center;
+  width: 25%;
+}
+
+</style>
+<!-- 
+If we want a horizontal list, we make a few changes:
+- Reset the width of the menu (ul).
+- Set the font size for the list (ul) to 0, then restore it for the list items (li).
+- Set the list items to inline-block.
+- Set the width of the list items to a value that will distribute the values the way you want them distributed (typically, you want a percentage width).
+- Center the list items horizontally. 
+-->
+
+

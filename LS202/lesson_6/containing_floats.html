@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Containing Floats</title>
+    <meta charset="utf-8">
+    <style>
+      #columns {
+        background-color: #e0e0e0;
+        box-sizing: border-box;
+        margin: 0 auto;
+        padding: 20px;
+        width: 780px;
+        /*overflow: hidden; The overflow ensures that the parent container properly envelops the two columns.*/
+      }
+
+
+
+      #columns::after { /* This rule is the clearfix */
+        clear: both;
+        content: "";
+        display: block;
+      }
+
+      #primary, #secondary {
+        background-color: yellow;
+      }
+
+      #primary {
+        float: left;
+        width: 500px;
+      }
+
+      #secondary {
+        float: right;
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="columns">
+      <div id="primary">
+        <h1>Main Content</h1>
+      </div>
+    
+      <div id="secondary">
+        <h3>Sidebar Content</h3>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- 
+  Overflow edge cases:
+
+  - overflow: hidden can cut off (clip) content that exceeds the allocated space for the text
+     if the container has a set height or width
+  - overflow: auto can add unwanted scrollbars, which is a browser specific behavior.
+
+  A clearfix is a standard pattern that developers use to ensure a container
+   doesn't lose its floated children. It employs an invisible block element
+   as the last child element of the container and the clear property.
+
+   The ::after pseudo-element creates a child element at the end of the selected element(s);
+   here, we put it at the end of our container. We define this child as a block element,
+   which means it must be on a line by itself. The content: "" property sets the content of the child
+   element: an empty string. Thus, the clearfix child is invisible.
+   Lastly, we use clear: both to "clear" the floats inside the container,
+   which forces the invisible child directly below the floated content.
+   The final result is similar to that of using overflow: the container can see the clearfix,
+   so all it needs to do is stretch itself to enclose the clearfix and the floated content as well.
+ -->
+
+ <!-- clear takes values of right, left, or both.
+ right and left refer to the type of floated element it will clear,
+ while both clears any floated element that it finds. You can use any of these values with clear,
+ but you should use clear: both
+ unless you find that you need clear: left or clear: right for some reason. -->

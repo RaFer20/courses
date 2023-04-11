@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Practice Problems Floats (1)</title>
+    <meta charset="utf-8">
+    <style>
+      body, section, article, aside {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #ccc;
+      }
+
+      section {
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: white;
+      }
+
+      /* clearfix */
+      section::after {
+        clear: both;
+        content: "";
+        display: block;
+      }
+
+      article, aside {
+        box-sizing: border-box;
+        float: left;
+        padding: 1rem;
+      }
+      article {
+        width: 70%;
+        background-color: pink;
+      }
+
+      aside {
+        float: none;
+        overflow: hidden;
+        background-color: blanchedalmond;
+      }
+
+      footer {
+        clear: both;
+        padding: 1rem;
+        background-color: skyblue;
+      }
+
+    </style>
+  </head>
+  <body>
+    <section>
+      <article>
+        <p>
+          Maecenas sodales elit in tincidunt ultrices. 
+          Maecenas quis faucibus odio. Donec non convallis tellus. 
+          Sed non mauris odio. Mauris aliquet mauris nec ornare rutrum. 
+          Phasellus posuere vel est id interdum. 
+          Nulla facilisis ultrices mauris, sed interdum erat. 
+          Morbi imperdiet sapien tortor, 
+          ac auctor magna euismod pellentesque. 
+          Maecenas augue ex, porta quis maximus nec, tristique ut felis. 
+          Aliquam ornare augue quis ante laoreet, et ultrices sem tempus. 
+          Aliquam vel ullamcorper tortor, in lacinia enim. 
+          Praesent vitae tincidunt libero.
+        </p>
+        <p>
+          Morbi eget lorem accumsan, vulputate tellus sit amet, 
+          posuere tellus. Quisque nulla nisl, venenatis a felis sed, 
+          vestibulum dapibus turpis. Nulla facilisi. Donec in enim tortor. 
+          Curabitur vel varius ligula, id imperdiet nunc. 
+          In blandit mauris vitae faucibus lacinia. 
+          Morbi nec massa at ipsum vulputate aliquam. 
+          Fusce massa arcu, posuere id viverra non, dictum a lacus. 
+          Mauris tellus quam, sodales sit amet arcu vitae, 
+          mollis fringilla tortor. 
+          Nullam aliquet est quis mauris egestas, 
+          sed suscipit sapien accumsan. 
+          Proin euismod tortor eget ex lobortis, 
+          sed aliquam arcu faucibus. Fusce ac ex mollis, 
+          fringilla sapien et, pharetra enim. Ut eu erat placerat, 
+          egestas erat et, convallis libero. 
+          Nullam ullamcorper ipsum quis ultrices blandit. 
+          Proin mattis iaculis erat, non ornare neque vulputate sed. 
+          Etiam aliquet pulvinar erat, 
+          eu blandit urna sollicitudin sed.
+        </p>
+        <p>
+          Orci varius natoque penatibus et magnis dis parturient montes, 
+          nascetur ridiculus mus. Curabitur enim augue, 
+          dictum vel quam sodales, pharetra luctus nulla. 
+          Mauris vitae odio quis massa mollis efficitur. 
+          Sed congue mi eget neque fermentum interdum. 
+          Maecenas tincidunt ipsum eget tristique tempus. 
+          Vestibulum eros lacus, molestie sed dui in, 
+          tempor fringilla augue. 
+          Etiam ut risus ac quam egestas dignissim eget a nisl. 
+          Nam mauris dolor, congue nec aliquet sed, facilisis sit amet nunc. 
+          Aliquam pulvinar dolor ac accumsan ultricies. 
+          Mauris ut turpis massa. 
+          Suspendisse nec diam vitae lectus mattis semper ac id sem. 
+          Ut laoreet nulla vel libero condimentum fringilla. 
+          Curabitur sodales, ipsum ac scelerisque suscipit, 
+          lacus neque pharetra nunc, 
+          sit amet gravida lorem orci in libero.
+        </p>
+      </article>
+      <aside>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          Pellentesque porttitor ipsum ut ligula varius consectetur. 
+          Donec massa nulla, auctor at diam sed, scelerisque tristique nulla. 
+          Nullam mollis a magna quis congue. Vestibulum eu nibh blandit, 
+          dapibus nisl sed, ultrices risus. Curabitur quis sollicitudin lectus. 
+          Donec ultricies odio tristique dolor posuere.  
+        </p>
+        <p>
+          Morbi sed pulvinar dui. Duis dui diam, sollicitudin vitae nisl eu, 
+          faucibus pretium sem. Nulla sodales, felis in dapibus posuere, 
+          risus magna tempus diam, sed tristique arcu lacus nec dolor. 
+          Sed ut maximus tellus. Donec risus libero, 
+          pellentesque vitae ex pharetra, feugiat suscipit neque. 
+          Fusce tincidunt vulputate eros, sit amet.  
+        </p>
+      </aside>
+      <footer>
+        <p>
+          Fusce vehicula mauris quis porta lobortis. 
+          Duis nec est vel elit tincidunt luctus quis vel eros. 
+          Mauris sit amet nibh est. Vestibulum at lorem a ex euismod varius. 
+          Nulla semper eros sit amet augue placerat egestas. 
+          Phasellus mollis ipsum a elit dignissim, 
+          quis malesuada nisl aliquet. Sed congue justo vel dui suscipit, 
+          ornare pharetra augue accumsan. Suspendisse imperdiet metus nisi, 
+          vel dictum neque imperdiet ut.
+        </p>
+      </footer>
+    </section>
+  </body>
+</html>

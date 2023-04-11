@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<!-- The textarea Element -->
+<!-- Unlike other controls, the value of the textarea doesn't use the value attribute
+   to provide a value for the element.
+  Instead, we need to contain the text between the opening and closing tags. -->
+<h2>textarea</h2>
+<form action="#" method="post">
+  <fieldset>
+    <label>
+      Comment
+      <textarea name="tweet">I got 20% off my first purchase at joesburgers.com! You can too!</textarea>
+    </label>
+  </fieldset>
+</form>
+<!-- Since textarea preserves whitespace, its common practice to code the open and close tags
+  on the same line unless the initial text content contains newlines. -->
+
+<!-- Rows and Cols -->
+<h2>textarea with rows and columns</h2>
+<form action="#" method="post">
+  <fieldset>
+    <label>
+      Comment
+      <textarea name="tweet" rows="5" cols="40">I got 20% off my first purchase at joesburgers.com! You can too!</textarea>
+    </label>
+  </fieldset>
+</form>
+<!-- textarea uses the rows and cols attributes to control the height and width of the text box;
+  rows is the height in lines, while cols is the width in characters. 
+  The rows value is not a maximum for the number of lines of input allowed;
+  instead, it's the number of visible lines.
+  The text box enables vertical scrolling when the content exceeds the rows count.
+-->
+
+
+<!-- The select Element -->
+<!-- select is used to create a drop-down list of options from which the user can select zero or more options.
+   It has two possible child elements, the option and optgroup elements.
+   select uses the name attribute like other form elements,
+   but it uses the option elements within it to describe the values shown to the user
+   and sent to the server (which may be different). 
+  
+  An option defines one of the choices a user can make in a select tag.
+  select elements often have a placeholder option that says something like Choose one and has a value
+  of an empty string, as well as a disabled and selected attribute. 
+  -->
+  
+<h2>select and option elements</h2>
+<form action="#" method="post">
+<fieldset>
+  <label>
+    Colors
+    <select name="color">
+      <option value="" disabled selected>Choose one</option>
+      <option value="#f00">Red</option>
+      <option value="#0f0">Green</option>
+      <option value="#00f">Blue</option>
+    </select>
+  </label>
+</fieldset>
+</form>
+<!-- If you add the multiple attribute, the user can select more than one option.
+  On most browsers, a select with multiple appears as a (possibly scrolling)
+  rectangle that displays several options.  -->
+<h2>multiple attribute</h2>
+<form action="#" method="post">
+<fieldset>
+  <label>
+    Choose Your Favorite Movies
+    <select name="favorites" multiple size="4">
+      <option value="" disabled selected>Select One or More</option>
+      <option>2001: A Space Odyssey</option>
+      <option>Arrival</option>
+      <option>Close Encounters of the Third Kind</option>
+      <option>District 9</option>
+      <option>Guardians of the Galaxy</option>
+      <option>Interstellar</option>
+      <option>Serenity</option>
+      <option>Silent Running</option>
+    </select>
+  </label>
+</fieldset>
+</form>

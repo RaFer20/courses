@@ -1,0 +1,122 @@
+<!-- Table with no thead, tbody, or tfoot components -->
+<table class="A">
+  <tr>                      <!-- row 1 -->
+    <th>Color Name</th>       <!-- column header 1 -->
+    <th>Color Hex</th>        <!-- column header 2 -->
+    <th>Color Decimal</th>    <!-- column header 3 -->
+  </tr>
+
+  <tr>                      <!-- row 2 -->
+    <th>red</th>              <!-- row header (column 1) -->
+    <td>#f00</td>             <!-- data cell 1 (column 2) -->
+    <td>255, 0, 0</td>        <!-- data cell 2 (column 3) -->
+  </tr>
+
+  <tr>                      <!-- row 3 -->
+    <th>green</th>            <!-- row header (column 1) -->
+    <td>#0f0</td>             <!-- data cell 1 (column 2) -->
+    <td>0, 255, 0</td>        <!-- data cell 2 (column 3) -->
+  </tr>
+
+  <tr>                      <!-- row 4 -->
+    <th>blue</th>             <!-- row header (column 1) -->
+    <td>#00f</td>             <!-- data cell 1 (column 2) -->
+    <td>0, 0, 255</td>        <!-- data cell 2 (column 3) -->
+  </tr>
+</table>
+<!-- Table with no thead, tbody, or tfoot components -->
+
+
+<!-- Table with thead, tbody, tfoot components and scope attribute-->
+<table class="B">
+    <thead>                              <!-- heading rows -->
+      <tr>                                 <!-- row 1 -->
+        <th scope="col">Color Name</th>      <!-- column header 1 -->
+        <th scope="col">Color Hex</th>       <!-- column header 2 -->
+        <th scope="col">Color Decimal</th>   <!-- column header 3 -->
+      </tr>
+    </thead>
+  
+    <tbody>                              <!-- body rows -->
+      <tr>                                 <!-- row 2 -->
+        <th scope="row">red</th>             <!-- row header (column 1) -->
+        <td>#f00</td>                        <!-- data cell 1 (column 2) -->
+        <td>255, 0, 0</td>                   <!-- data cell 2 (column 3) -->
+      </tr>
+  
+      <tr>                                 <!-- row 3 -->
+        <th scope="row">green</th>           <!-- row header (column 1) -->
+        <td>#0f0</td>                        <!-- data cell 1 (column 2) -->
+        <td>0, 255, 0</td>                   <!-- data cell 2 (column 3) -->
+      </tr>
+  
+      <tr>                                 <!-- row 4 -->
+        <th scope="row">blue</th>            <!-- row header (column 1) -->
+        <td>#00f</td>                        <!-- data cell 1 (column 2) -->
+        <td>0, 0, 255</td>                   <!-- data cell 2 (column 3) -->
+      </tr>
+    </tbody>
+  
+    <tfoot>                              <!-- footer -->
+      <tr>                                 <!-- row 5 -->
+        <td>name</td>                        <!-- data cell 1 (column 1) -->
+        <td>#rrggbb</td>                     <!-- data cell 2 (column 2) -->
+        <td>red, green, blue</td>            <!-- data cell 3 (column 3) -->
+      </tr>
+    </tfoot>
+</table>
+<!-- Table with thead, tbody, tfoot components and scope attribute-->
+
+<style>
+    /* A  */
+    table.A {
+        font-size: 1.5rem;
+    }
+
+    /* B  */
+    table.B {
+    font-size: 1.5rem;
+    }
+
+    .B th {
+    font-size: 1.75rem;
+    }
+
+    .B tbody tr {
+    font-style: italic;
+    }
+
+    .B tbody tr:nth-child(1) {
+    color: red;
+    }
+
+    .B tbody tr:nth-child(2) {
+    color: green;
+    }
+
+    .B tbody tr:nth-child(3) {
+    color: blue;
+    }
+
+    .B tfoot tr {
+    font-size: 1rem;
+    }
+
+    .B tfoot td {
+    border-top: 1px solid gray;
+    }
+
+    .B td {
+    text-align: center;
+    }
+
+    [scope="col"] {
+    padding: 0 10px;
+    text-decoration: underline;
+    }
+
+    [scope="row"] {
+    text-transform: uppercase;
+    }
+</style>
+<!-- Note the use of the :nth-child() pseudo-class to select the first, second, and third rows of the tbody. -->

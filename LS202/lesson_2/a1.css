@@ -1,0 +1,21 @@
+section {
+    background-color: yellow;
+    border: 1px solid red;
+    box-sizing: content-box;
+    display: inline-block;
+    height: 400px;
+    margin: 0;
+    padding: 20px;
+    width: 900px;
+  }
+  
+  article {
+    background-color: lime;
+    border: 1px solid blue;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 100%;
+    margin: 0;
+    padding: 10px;
+    width: 50%;
+  }

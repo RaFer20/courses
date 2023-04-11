@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<!-- The value Attribute -->
+<h2>value</h2>
+<!-- For text-based types such as text, email, and number, the value assigns a default value for the control.
+If you don't supply a default value, the browser uses an empty string. -->
+<form action="#" method="post">
+  <fieldset>
+    <label>
+      Phone
+      <input type="tel" name="phone" value="503-555-1212">
+    </label>
+  </fieldset>
+</form>
+
+<!-- checkbox and radio types use the value attribute to set the value
+    that the form submits for the indicated checkbox or radio group element. -->
+<form action="#" method="post">
+  <fieldset>
+    <label>
+      <input type="radio" name="color" value="red">
+      Red
+    </label>
+    <br>
+
+    <label>
+      <input type="radio" name="color" value="blue" checked>
+      Blue
+    </label>
+    <br>
+
+    <label>
+      <input type="radio" name="color" value="green">
+      Green
+    </label>
+  </fieldset>
+</form>
+
+<!-- Button types, such as submit, reset, and the button type use the value attribute for the label that appears on the button: -->
+<form action="#" method="post">
+  <fieldset>
+    <input type="submit" value="Save">
+  </fieldset>
+</form>
+
+<!-- The size and maxlength Attributes -->
+<h2>size and maxlength</h2>
+<form action="#" method="post">
+  <fieldset>
+    <label>
+      Phone
+      <input type="tel" name="phone" size="10" maxlength="16">
+    </label>
+    <br>
+    <label>
+      Cell Phone
+      <input type="tel" name="cell-phone" size="20" maxlength="40">
+    </label>
+  </fieldset>
+</form>
+
+<!-- The placeholder Attribute -->
+<h2>placeholder</h2>
+<form action="#" method="post">
+  <fieldset>
+    <label>
+      Phone
+      <input type="tel" name="phone" placeholder="###-###-####">
+    </label>
+  </fieldset>
+  <fieldset>
+    <label>
+      Email
+      <input type="email" name="email" placeholder="email@domain.com">
+    </label>
+  </fieldset>
+</form>
+
+<!-- The disabled Attribute -->
+<h2>disabled</h2>
+<form action="#" method="post">
+  <fieldset>
+    <label>
+      Email
+      <input type="email" name="email" value="xyz@example.com" disabled>
+    </label>
+    <br>
+    <input type="submit" value="Save" disabled>
+  </fieldset>
+</form>
+
+<!-- The required Attribute -->
+<h2>required</h2>
+<form action="#" method="post">
+  <fieldset>
+    <label>
+      Home Phone
+      <input type="text" name="home_phone" required>
+    </label>
+    <br>
+    <label>
+      Business Phone
+      <input type="text" name="business_phone">
+    </label>
+    <br>
+    <input type="submit" value="Save">
+  </fieldset>
+</form>
+<style>
+input:required {
+  background-color: pink;
+}</style>
+
+
+<!-- The autocomplete Attribute -->
+<h2>autocomplete</h2>
+<input type="tel" value="123-456-7890" name="phone" autocomplete="off">
+
+<!-- The autocapitalize Attribute -->
+<h2>autocapitalize</h2>
+<input type="text" name="full-name" autocapitalize="words">
+
+<!-- The autocorrect Attribute -->
+<h2>autocorrect</h2>
+<input type="text" name="full-name" autocorrect="off">

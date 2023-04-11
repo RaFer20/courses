@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>your page title goes here</title>
+    <meta charset="utf-8">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      article {
+        border: 8px solid #cecece;
+      }
+
+      #positioned {
+        box-sizing: border-box;
+        width: 400px;
+        background-color: #ffc;
+        padding: 30px 15px;
+        position: fixed;
+        left: 50%;
+        margin-left: -200px;
+        top: 0;
+        z-index: 2;
+        margin-top: 20px;
+      }
+
+      #fixed {
+        background-color: rgba(0, 0, 0, .6);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+
+      #positioned span {
+        position: absolute;
+        left: -10px;
+        top: -10px;
+        background-color: pink;
+        height: 20px;
+        width: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sem nulla, tincidunt sit amet cursus vulputate, aliquet eu nibh. Fusce sit amet ipsum risus. Etiam tristique auctor metus vitae efficitur. Curabitur ut nulla et quam placerat feugiat in vitae nisi. Donec magna justo, tincidunt a volutpat at, tempus vitae erat. Ut ornare neque at odio ullamcorper, vel imperdiet enim dapibus. Mauris semper mi nec mauris venenatis imperdiet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi hendrerit sit amet nisl at ornare. Vivamus imperdiet ultrices elit, sed malesuada libero ornare ut. Suspendisse sollicitudin, justo vel convallis venenatis, urna dolor fringilla leo, eu bibendum felis tortor eu nulla.
+      </p>
+      <p>
+        Aliquam id orci neque. Ut quis erat eget sapien commodo accumsan. Nunc dapibus est a tincidunt accumsan. Mauris rutrum placerat dui, fringilla vulputate quam blandit eget. Morbi condimentum aliquam nibh quis molestie. Phasellus luctus gravida molestie. Ut tortor quam, bibendum quis libero interdum, faucibus pulvinar enim. Vestibulum porttitor hendrerit egestas. Nam interdum nibh et tortor sollicitudin malesuada. Curabitur ac mattis tellus, at feugiat ipsum. Phasellus condimentum egestas turpis, sit amet consequat nibh hendrerit eget. Donec eget finibus diam. Aliquam quis enim vulputate, scelerisque magna vel, rutrum sem. Quisque eget finibus enim, quis volutpat diam. Nam congue felis a pharetra placerat.
+      </p>
+      <p>
+        Curabitur consequat maximus porta. Curabitur quis hendrerit metus, ac interdum felis. Nulla felis orci, rutrum vitae leo quis, venenatis faucibus sem. Aliquam erat volutpat. Aliquam consequat metus et sem egestas scelerisque. Aliquam ac nisi eu massa luctus vulputate eu tempor nisi. Donec eu leo ut diam molestie vehicula. Sed vestibulum rhoncus euismod. In vitae sapien vehicula, pretium diam a, feugiat orci. Fusce nulla eros, mattis non sapien vel, elementum tempor augue. Nulla et malesuada felis.
+      </p>
+      <p>
+        Praesent lorem tellus, pellentesque non enim in, blandit blandit turpis. Pellentesque commodo, urna non fermentum porta, quam metus iaculis sapien, sed congue massa ligula ac lorem. Sed vitae ante vitae massa pharetra congue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras eget diam fermentum, egestas lectus vel, semper nibh. Mauris sed arcu non dui porta maximus vel at diam. Integer sed tortor nec urna tincidunt tincidunt. Sed suscipit, ex eu pulvinar semper, lorem augue accumsan lacus, a fermentum purus lectus non lacus.
+      </p>
+      <p>
+        Nullam tempor nunc id urna faucibus, eget mollis eros iaculis. Fusce sodales felis non mauris porta, ac lacinia urna elementum. Donec in ex sed felis tempor tristique. In hac habitasse platea dictumst. Pellentesque posuere malesuada massa eu posuere. Nulla id neque eget orci tincidunt eleifend ultricies ultrices nibh. Maecenas vitae nisi vel nisl vestibulum tincidunt.
+      </p>
+      <p>
+        Praesent sit amet mauris lobortis, interdum ligula vitae, vehicula est. Ut varius, nibh auctor dictum tempor, enim risus ullamcorper metus, non vulputate ipsum massa nec lacus. Nulla aliquet commodo quam, eu lobortis ipsum auctor et. Nulla facilisi. Aliquam pulvinar laoreet purus eget vehicula. Nam in finibus orci. Aenean ac gravida arcu, nec porta ex. Fusce convallis libero orci, at consectetur enim accumsan et. Fusce porta, lectus sit amet vehicula suscipit, urna augue maximus elit, ut tristique leo elit vel magna. Maecenas pellentesque, arcu in ultrices tempor, ante tortor aliquet nisi, sed consequat lectus diam a nisi. Proin molestie eu orci in condimentum. Nulla feugiat felis non ipsum auctor mollis.
+      </p>
+      <aside id="fixed"></aside>
+      <aside id="positioned">
+        <span></span>
+        Im Positioned!
+      </aside>
+    </article>
+  </body>
+</html>
+
+
+<!-- To horizontally center a positioned element with fixed width,
+  you can move it to the center of the container with a left offset of 50%,
+  and a negative left margin that is half the width of the element.  -->

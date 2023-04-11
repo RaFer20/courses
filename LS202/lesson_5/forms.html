@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!-- 
+    The `form` tag
+The form tag is the parent for all form-related tags. It tells the browser where and how to send the data.
+The most important attributes are action and method.
+A form should contain at least one input, textarea, or select tag; without one, the form is useless. 
+
+    The `method` attribute
+The method attribute tells the browser whether it should use the HTTP GET or HTTP POST method when sending the data to the server.
+You should use method="get" when requesting information from the server, and use method="post" when updating data on the server.
+
+HTTP supports several other methods, but HTML limits you to GET and POST.
+You must use JavaScript or a backend application to use the other methods.
+
+    The `action` and `formaction` Attributes
+action provides the URL to which the browser sends requests.
+Individual action items (button and input type="submit" elements) in a formcan override
+the form's action value by using the formaction attribute.
+-->
+
+<!-- The fieldset Tag -->
+<form action="/login" method="post">
+  <fieldset>
+    <input type="text" name="username">
+    <input type="password" name="password">
+  </fieldset>
+  <fieldset>
+    <input type="submit" value="Save">
+    <input type="submit" value="Forgot Password" formaction="/forgot">
+  </fieldset>
+</form>
+
+
+  <!-- The input Tag 
+  input is a self-closing tag.-->
+<input type="text" name="city">
+<input type="password" name="password">
+<input type="submit" value="Save">
+
+
+<!-- The label Tag -->
+<label for="phone">Phone</label>
+<input type="text" id="phone" name="phone_number">
+<!-- or -->
+<label>
+  Phone
+  <input type="text" name="phone">
+</label>
+<!-- The "container" syntax eliminates the need for the for and id attributes -->
+
+
+<!-- Complete form Example
+This form has two input fields, username and password, each with a label, and four buttons. -->
+<form action="#" method="post">
+  <fieldset>
+    <h1>Log In</h1>
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username">
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+
+    <input type="submit" value="Log In">
+    <input type="submit" value="Delete account"
+           formaction="/account/delete">
+    <input type="submit" value="Forgot password"
+           formaction="/account/password">
+    <input type="reset" value="Reset">
+  </fieldset>
+</form>
+
+<!-- Same form, using `fieldset` to arrange the inputs -->
+<form action="#" method="post">
+  <fieldset>
+    <h1>Log In</h1>
+    <fieldset>
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username">
+    </fieldset>
+
+    <fieldset>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password">
+    </fieldset>
+
+    <fieldset>
+      <input type="submit" value="Log In">
+      <input type="submit" value="Delete account"
+             formaction="/account/delete">
+      <input type="submit" value="Forgot password"
+             formaction="/account/password">
+      <input type="reset" value="Reset">
+    </fieldset>
+  </fieldset>
+</form>
+<style>
+  fieldset {
+  border: none;
+}
+</style>
