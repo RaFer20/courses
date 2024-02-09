@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test</title>
+</head>
+<body>
+<script>
+function calculateAverage(scores) {
+  let sum = scores.reduce((accum, value) => accum + value, 0);
+  let average = sum/scores.length
+  return average
+}
+
+let amount = Number(prompt('How many scores will you enter?'))
+let scoresArray = []
+for (let i = 0; scoresArray.length < amount; i++) {
+  score = Number(prompt(`Enter score ${i + 1}:`));
+  scoresArray.push(score)
+}
+
+let average = calculateAverage(scoresArray)
+
+let grade = 'F';
+if (average >= 90) {
+  grade = 'A';
+} else if (average >= 70) {
+  grade = 'B';
+} else if (average >= 50) {
+  grade = 'C';
+}
+
+console.log('Based on the average of your 3 scores your letter grade is "' +
+            grade + '".');
+</script>
+</body>
+</html>

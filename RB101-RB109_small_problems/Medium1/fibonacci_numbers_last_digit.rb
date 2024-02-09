@@ -36,16 +36,31 @@ Return the last element of the fibonacci_number array
 =end
 
 
+# def fibonacci_last(number)
+#   return 1 if number <= 2
+#   fibonacci_number = [1, 1]
+#   until number < 3
+#     fibonacci_number = [fibonacci_number.last, (fibonacci_number.first + fibonacci_number.last) % 10]
+#     number -= 1
+#   end
+#   fibonacci_number.last
+# end
+
 def fibonacci_last(number)
   return 1 if number <= 2
-  fibonacci_number = [1, 1]
+  n1 = 1
+  n2 = 1
+  fibonacci_number = 0
   until number < 3
-    fibonacci_number = [fibonacci_number.last, (fibonacci_number.first + fibonacci_number.last) % 10]
+    fibonacci_number = n1 + n2
+    n1 = n2
+    n2 = fibonacci_number
     number -= 1
   end
-  fibonacci_number.last
+  fibonacci_number % 10
 end
 
+p fibonacci_last(4)
 p fibonacci_last(15)        # -> 0  (the 15th Fibonacci number is 610)
 p fibonacci_last(20)        # -> 5 (the 20th Fibonacci number is 6765)
 p fibonacci_last(100)       # -> 5 (the 100th Fibonacci number is 354224848179261915075)

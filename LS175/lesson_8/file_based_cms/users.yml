@@ -1,0 +1,6 @@
+{
+  admin: "$2a$12$wCoYq.vWpGgE6fgawGF2TuceUw2FclGGSL..rKaXpCg4ytVdqJH5C", #secret
+  developer: "$2a$12$rpTdX.1Qxbv64L2LdOa1.u8UZPTWqRhlk9BgcjY6Q.UiV83qdl.Sy", #letmeinnow
+  bill: "$2a$12$js0/Woh32kxs8VWNhPEWUu3A6s7uMIGFW1/EMdEv97kaVR8XTu2lS", #newpass
+  sean: "$2a$12$RTsFjo3xqY.Lb0UML9adFeLjRLl.nPlkosFHtM.K0dOdmv2C5QjuS" #password
+}
